@@ -31,7 +31,7 @@ export const AuthGoogleProvider = ({children}:any) => {
             const userGoogle = result.user;
             setUser(userGoogle)
             localstorage.setStorageToken("@AuthFirebase:token",token)
-            localstorage.setStorageUser("@AuthFirebase:user",JSON.stringify(user))
+            localstorage.setStorageUser("@AuthFirebase:user",JSON.stringify(userGoogle))
           }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
@@ -41,7 +41,7 @@ export const AuthGoogleProvider = ({children}:any) => {
 }
 
 return (
-    <AuthGoogleContext.Provider value={{signInGoogle,signed:!!user}}>
+    <AuthGoogleContext.Provider value={{signInGoogle,signed:!!user,user}}>
       {children}
     </AuthGoogleContext.Provider>
 )
