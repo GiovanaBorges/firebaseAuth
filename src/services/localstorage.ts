@@ -6,9 +6,9 @@ export class LocalStorage{
         sessionStorage.setItem(key,value)
     }
     getStorageToken(key:string):any{
-        sessionStorage.getItem(key)
+        return sessionStorage.getItem(key)
     }
     getStorageUser(key:string):any{
-        sessionStorage.getItem(key)
+        return sessionStorage.getItem(key)
     }
 }
