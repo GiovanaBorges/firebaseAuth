@@ -1,24 +1,24 @@
-import {GoogleAuthProvider,getAuth, signInWithPopup,} from "firebase/auth"
-const provider = new GoogleAuthProvider()
+import {App} from "../services/index"
+import { useContext } from "react"
+import { AuthGoogleContext } from "../contexts/authGoogle"
+import { Navigate } from "react-router-dom"
 
 export default function Login() {
-  const signInGoogle = () =>{
-    
-const auth = getAuth();
-signInWithPopup(auth, provider)
-  .then((result) => {
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken ;
-    const user = result.user;
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const email = error.customData.email;
-    const credential = GoogleAuthProvider.credentialFromError(error);
-  });
+  const {signInGoogle,signed} = useContext(AuthGoogleContext)
+
+  async function loginGoogle(){
+    await signInGoogle()
   }
-  
-    return (
+
+  if(!signed){
+  return (
+    <>
     <div>Login</div>
+    <button onClick={()=> loginGoogle()}>Logar com o google</button>
+    </>
   )
+  }else{
+    return <Navigate to="/home"/>
+  }
+
 }

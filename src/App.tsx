@@ -1,9 +1,12 @@
 import React from 'react';
+import { AuthGoogleProvider } from './contexts/authGoogle';
 import AppRoutes from './routes/routes';
 
 function App() {
   return (
-  <AppRoutes/>
+    <AuthGoogleProvider>
+      <AppRoutes/>
+    </AuthGoogleProvider>
   );
 }
 
